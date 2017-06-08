@@ -11,10 +11,12 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <form id="frmUsuario">
+        <form id="frmUsuario" action="controlador/ValidarUsuario.php">
             <label>Nombre Usuario</label><input type="text" name="txtNomUsuario" id="txtNomUsuario"><br>
             <label>Contraseña </label><input type="password" name="txtClave" id="txtClave"><br>
             <input type="button" id="btnEnviar" onclick="" value="Enviar"><br>
+            <div id="mensaje"></div>
+                
         </form>
         
     </body>
@@ -25,7 +27,16 @@ and open the template in the editor.
                 alert("Ocultaste el formulario " + $("#txtNomUsuario").val());*/
                 if($("#txtNomUsuario").val()!="" && $("#txtClave").val()!="")
                 {
-                    $("#frmUsuario").submit();
+                    //$("#frmUsuario").submit();
+                    $.ajax({url:"controlador/ValidarUsuario.php"
+                        ,type:'post'
+                        ,data:{'txtNomUsuario':$("#txtNomUsuario").val(),
+                            'txtClave':$("#txtClave").val()
+                        }
+                        ,success:function(resultado){
+                            $("#mensaje").html(resultado);
+                    }
+                });
                 }
                 else
                 {
