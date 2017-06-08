@@ -35,7 +35,7 @@
         {
             $usu="ddiazj124";
             $key="1234";
-            if($usu == $this->nombre && $key == $this->clave)
+            if($this->nombre==$usu  && $this->clave==$key)
             {
                 true;
             }
